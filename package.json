@@ -1,0 +1,13 @@
+{
+  "name": "apps-script-proxy",
+  "version": "1.0.0",
+  "description": "Proxy server untuk mengatasi CORS Google Apps Script",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.7"
+  }
+}
