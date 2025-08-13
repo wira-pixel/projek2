@@ -4,8 +4,8 @@ const app = express();
 
 app.use(express.json());
 
-// Ganti dengan URL Apps Script kamu
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1kD07f-_BVkxViuHSN5As_qOqCDdBMcUpoPd53MvgFSyuZxwgdUFMBLHwDacofSm9/exec";
+// Ganti dengan URL endpoint final kamu
+const APPS_SCRIPT_URL = "https://forminspek1.sayaryant.workers.dev";
 
 // Proxy endpoint
 app.post("/send", async (req, res) => {
@@ -15,10 +15,14 @@ app.post("/send", async (req, res) => {
       body: JSON.stringify(req.body),
       headers: { "Content-Type": "application/json" }
     });
+
     const data = await response.text();
 
     // CORS header
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
     res.send(data);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -34,5 +38,5 @@ app.options("/send", (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log("Proxy server berjalan");
+  console.log("Proxy server berjalan di port 3000");
 });
